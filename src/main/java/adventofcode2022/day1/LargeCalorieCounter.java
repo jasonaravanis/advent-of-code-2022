@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+// Large calculator is used if input file is large (> 1GB)
 public class LargeCalorieCounter {
 
     public static int findElfWithMostCalories (BufferedReader reader) throws IOException {
@@ -30,11 +31,5 @@ public class LargeCalorieCounter {
                 throw new RuntimeException("Could not find fattest elf");
             }
         }
-
-
-
-
     }
-
-
 }
