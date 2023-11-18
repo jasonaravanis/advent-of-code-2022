@@ -12,19 +12,24 @@ public class Main1 {
     // we need to find the top three totals
 
     // we need to scan the text file
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = null;
 
         try {
             InputStream inputStream = Main1.class.getResourceAsStream("input.txt");
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader reader = new BufferedReader(inputStreamReader);
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+            if (inputStream == null) {
+                throw new RuntimeException("This should never happen, I know this file exists");
             }
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            reader = new BufferedReader(inputStreamReader);
+            int fattestElfCalories = CalorieCounter.findElfWithMostCalories(reader);
+            System.out.println("The elf with the most calories is carrying " + fattestElfCalories + " calories");
         } catch (IOException e) {
-            throw new RuntimeException("This should never happen, I know this file exists", e);
+            throw new RuntimeException("Something went wrong", e);
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
         }
 
     }
