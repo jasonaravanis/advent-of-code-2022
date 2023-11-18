@@ -8,7 +8,7 @@ import java.util.Optional;
 public class LargeCalorieCounter {
 
     public static int findElfWithMostCalories (BufferedReader reader) throws IOException {
-        try {
+        try (reader) {
             ArrayList<Integer> elves = new ArrayList<>();
             String line;
             ArrayList<Integer> elfItems = new ArrayList<>();
@@ -29,8 +29,6 @@ public class LargeCalorieCounter {
             } else {
                 throw new RuntimeException("Could not find fattest elf");
             }
-        } finally {
-            reader.close();
         }
 
 

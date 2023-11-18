@@ -24,7 +24,7 @@ public class FileLoader {
     }
 
     public static BufferedReader getFileAsReader(String path) throws IOException {
-        BufferedReader reader = null;
+        BufferedReader reader;
         ClassLoader classLoader = FileLoader.class.getClassLoader();
         URL resourceURL = classLoader.getResource(path);
         InputStreamReader inputStreamReader = getInputStreamReader(resourceURL);
