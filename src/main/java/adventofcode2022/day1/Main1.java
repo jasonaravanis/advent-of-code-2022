@@ -9,11 +9,14 @@ public class Main1 {
     public static void main(String[] args) throws IOException {
         String filePath = "adventofcode2022/day1/input.txt";
         String fileContents = FileLoader.getFileAsString(filePath);
-        BufferedReader reader = FileLoader.getFileAsReader(filePath);
+        BufferedReader readerOne = FileLoader.getFileAsReader(filePath);
+        BufferedReader readerTwo = FileLoader.getFileAsReader(filePath);
 
 //        LargeCalorieCounter should be used if input file greater than 1GB
-        int largeSolution = LargeCalorieCounter.findElfWithMostCalories(reader);
-        System.out.println("Large calculator solution: " + largeSolution);
+        int largeSolution = LargeCalorieCounter.findElfWithMostCalories(readerOne);
+        System.out.println("Large calculator solution part 1: " + largeSolution);
+        int largeSolutionPartTwo = LargeCalorieCounter.findSumOfTopThreeElves(readerTwo);
+        System.out.println("Large calculator solution part 2: " + largeSolutionPartTwo);
 
 //        SmallCalorieCounter should be used if input file smaller than 1GB
         int smallSolutionPartOne = SmallCalorieCounter.findElfWithMostCalories(fileContents);
