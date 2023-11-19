@@ -27,15 +27,17 @@ public class LargeCalorieCounterTest {
             20
             30
             """;
-    static final BufferedReader TEST_INPUT = new BufferedReader(new StringReader(testString));
+
 
     @Test
     void givenSampleInput_findElfWithMostCalories_returns2400() throws IOException {
+        BufferedReader TEST_INPUT = new BufferedReader(new StringReader(testString));
         assertEquals(2400, LargeCalorieCounter.findElfWithMostCalories(TEST_INPUT));
     }
 
     @Test
     void givenSampleInput_findSumOfTopThreeElves_returns4500() throws IOException {
+        BufferedReader TEST_INPUT = new BufferedReader(new StringReader(testString));
         assertEquals(4500, LargeCalorieCounter.findSumOfTopThreeElves(TEST_INPUT));
     }
 }
