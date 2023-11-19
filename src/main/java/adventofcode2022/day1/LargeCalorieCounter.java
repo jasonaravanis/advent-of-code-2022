@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 // Large calculator is used if input file is large (> 1GB)
 public class LargeCalorieCounter {
