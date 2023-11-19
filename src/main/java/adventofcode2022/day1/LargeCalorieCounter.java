@@ -3,7 +3,7 @@ package adventofcode2022.day1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -42,6 +42,13 @@ public class LargeCalorieCounter {
 
     public static int findSumOfTopThreeElves(BufferedReader reader) throws IOException {
         IntStream elves = getElfSums(reader);
-        return elves.boxed().sorted(Comparator.reverseOrder()).limit(3).mapToInt(Integer::intValue).sum();
+        int[] array = elves.toArray();
+        int elfCount = array.length;
+        IntStream elvesAgain = Arrays.stream(array);
+        return elvesAgain.sorted().skip(Math.max(0, elfCount - 3)).sum();
+
+//        Solution below avoids the need to do the stream -> array -> stream operations above
+//        return elves.boxed().sorted(Comparator.reverseOrder()).limit(3).mapToInt(Integer::intValue).sum();
+
     }
 }
