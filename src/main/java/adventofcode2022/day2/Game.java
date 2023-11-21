@@ -22,14 +22,25 @@ public enum Game {
         return false;
     }
 
-    public static Game getResult(Shape enemyMove, Shape myMove) {
+    public static int getResult(Shape enemyMove, Shape myMove) {
+        int outcomeScore;
         if(enemyMove == myMove) {
-            return Game.DRAW;
+            outcomeScore = Game.DRAW.score;
         }
         else if(isWin(enemyMove, myMove)) {
-            return Game.WIN;
+            outcomeScore = Game.WIN.score;
         } else {
-            return Game.DRAW;
+            outcomeScore = Game.LOSS.score;
         }
+        return outcomeScore + myMove.score;
+    }
+
+    public static Game of(char symbol) {
+        return switch (symbol) {
+            case 'X' -> Game.LOSS;
+            case 'Y' -> Game.DRAW;
+            case 'Z' -> Game.WIN;
+            default -> throw new RuntimeException("Could not lookup game symbol");
+        };
     }
 }

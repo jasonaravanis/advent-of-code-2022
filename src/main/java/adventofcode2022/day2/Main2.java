@@ -8,5 +8,7 @@ public class Main2 {
         String fileContents = FileLoader.getFileAsString(filePath);
         int partOneSolution = StrategyEvaluator.evaluateStrategy(fileContents);
         System.out.println("Part one solution: " + partOneSolution);
+        int partTwoSolution = StrategyEvaluator.evaluateStrategyPartTwo(fileContents);
+        System.out.println("Part two solution: " + partTwoSolution);
     }
 }
