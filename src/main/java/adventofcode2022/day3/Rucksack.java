@@ -7,6 +7,6 @@ public class Rucksack {
     }
 
     public Item getIncorrectItem() {
-        return new Item('A', 1);
+        return new Item('A');
     }
 }
