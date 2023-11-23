@@ -3,6 +3,7 @@ package adventofcode2022.day3;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class RucksackOrganiser {
 
@@ -12,20 +13,12 @@ public class RucksackOrganiser {
         while ((line = reader.readLine()) != null) {
             rucksacks.add(new Rucksack(line));
         }
-        int answer = rucksacks.stream().map(Rucksack::getIncorrectItem).map(item -> item.priority).mapToInt(Integer::valueOf).sum();
-        System.out.println(answer);
-        return answer;
-        // Item is stubbed, all priority is 1.
+        return rucksacks
+                .stream()
+                .map(Rucksack::getMisplacedItem)
+                .filter(Objects::nonNull)
+                .map(item -> item.priority)
+                .mapToInt(Integer::valueOf)
+                .sum();
     }
 }
-
-// create a reader
-// read in a line
-// generate a rucksack with the line
-// have an array of rucksacks
-// forEach rucksack
-// call rucksack.findItem() to get an Item
-
-// have an array of Items
-// for each Item
-// get the priority and the sum

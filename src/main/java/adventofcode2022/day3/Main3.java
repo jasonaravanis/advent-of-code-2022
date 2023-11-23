@@ -11,8 +11,6 @@ public class Main3 {
         String filePath = "adventofcode2022/day3/input.txt";
         BufferedReader reader = FileLoader.getFileAsReader(filePath);
         int sumOfItemPriorities = RucksackOrganiser.getSumOfItemPriorities(reader);
+        System.out.println("Day 3 part 1 solution: " + sumOfItemPriorities);
     }
-
-
-
 }
