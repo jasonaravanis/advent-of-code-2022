@@ -1,5 +1,7 @@
 package adventofcode2022.day4;
 
+import java.util.stream.IntStream;
+
 public class Pair {
     Assignment assignmentOne;
     Assignment assignmentTwo;
@@ -16,14 +18,11 @@ public class Pair {
         }
         return assignmentTwo.lowerBound <= assignmentOne.lowerBound && assignmentTwo.upperBound >= assignmentOne.upperBound;
     }
+
+    public boolean hasAnyOverlap() {
+        IntStream assignmentOneZones = IntStream.rangeClosed(assignmentOne.lowerBound, assignmentOne.upperBound);
+        long matches = assignmentOneZones.filter(i -> i >= assignmentTwo.lowerBound && i <= assignmentTwo.upperBound)
+                .count();
+        return matches > 0;
+    }
 }
-/*
- * input looks like 2-4, 6-8
- *
- * if alpha is contained in beta
- * * the lower number in alpha will be equal to or less than the lowest number in beta
- * the highest number in alpha will be equal to or less than the highest number in beta
- *
- * vice versa if beta is contained in alpha
- *
- * */

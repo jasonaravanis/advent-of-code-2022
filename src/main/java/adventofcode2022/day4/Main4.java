@@ -10,5 +10,9 @@ public class Main4 {
         BufferedReader reader = FileLoader.getFileAsReader("adventofcode2022/day4/input.txt");
         long partOneSolution = AssignmentInspector.getCountOfBadAssignments(reader);
         System.out.println("Day 4 part 1 solution: " + partOneSolution);
+
+        BufferedReader readerTwo = FileLoader.getFileAsReader("adventofcode2022/day4/input.txt");
+        long partTwoSolution = AssignmentInspector.getCountOfAnyOverlap(readerTwo);
+        System.out.println("Day 4 part 2 solution: " + partTwoSolution);
     }
 }

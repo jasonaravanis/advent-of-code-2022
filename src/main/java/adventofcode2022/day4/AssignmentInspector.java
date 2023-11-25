@@ -8,16 +8,11 @@ public class AssignmentInspector {
                 .map(Pair::new)
                 .filter(Pair::isFullyContained)
                 .count();
-        /*
-        * input looks like 2-4, 6-8
-        *
-        * if alpha is contained in beta
-        * the highest number in alpha will be equal to or less than the highest number in beta
-        * the lower number in alpha will be equal to or less than the lowest number in beta
-        *
-        * vice versa if beta is contained in alpha
-        *
-        * */
-
+    }
+    public static long getCountOfAnyOverlap(BufferedReader reader) {
+        return reader.lines()
+                .map(Pair::new)
+                .filter(Pair::hasAnyOverlap)
+                .count();
     }
 }
