@@ -1,8 +1,6 @@
 package adventofcode2022.day3;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.IntStream;
 
 public class Group {
     List<Rucksack> rucksacks;
@@ -13,7 +11,7 @@ public class Group {
 
     public int getPriorityOfGroupBadge() {
 
-        int result = rucksacks
+        return rucksacks
                 .get(0).content.chars()
                 .filter(
                         i -> rucksacks.get(1).containsItem((char) i) &&
@@ -21,6 +19,5 @@ public class Group {
                 .mapToObj(j -> new Item((char) j))
                 .findFirst()
                 .map(item -> item.priority).orElse(0);
-        return result;
     }
 }

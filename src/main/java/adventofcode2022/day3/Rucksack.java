@@ -1,6 +1,5 @@
 package adventofcode2022.day3;
 
-
 import java.util.OptionalInt;
 import java.util.stream.IntStream;
 

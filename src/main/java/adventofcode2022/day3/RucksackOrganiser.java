@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class RucksackOrganiser {
 
@@ -31,10 +29,9 @@ public class RucksackOrganiser {
             groupsList.add(rucksacks.subList(i, subListEndIndex));
         }
 
-        Stream<Group> groupsStream = groupsList.stream().map(Group::new);
-
-
-        return groupsStream.mapToInt(Group::getPriorityOfGroupBadge).sum();
-
+        return groupsList.stream()
+                .map(Group::new)
+                .mapToInt(Group::getPriorityOfGroupBadge)
+                .sum();
     }
 }
