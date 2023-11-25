@@ -12,5 +12,9 @@ public class Main3 {
         BufferedReader reader = FileLoader.getFileAsReader(filePath);
         int sumOfItemPriorities = RucksackOrganiser.getSumOfItemPriorities(reader);
         System.out.println("Day 3 part 1 solution: " + sumOfItemPriorities);
+
+        BufferedReader readerTwo = FileLoader.getFileAsReader(filePath);
+        int sumOfBadgePriorities = RucksackOrganiser.getSumOfGroupBadges(readerTwo);
+        System.out.println("Day 3 part 2 solution: " + sumOfBadgePriorities);
     }
 }

@@ -22,4 +22,8 @@ public class Rucksack {
         }
         return null;
     }
+
+    public boolean containsItem(Character symbol) {
+        return content.contains(String.valueOf(symbol));
+    }
 }

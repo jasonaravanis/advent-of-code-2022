@@ -2,8 +2,7 @@ package adventofcode2022.day3;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RucksackTest {
 
@@ -21,5 +20,12 @@ public class RucksackTest {
         Rucksack bag = new Rucksack("vJrwWtwJgWrhcsFMMfFFhF");
         Item misplacedItem = bag.getMisplacedItem();
         assertNull(misplacedItem);
+    }
+
+    @Test
+    void checksIfRucksackContainsSymbol() {
+        Rucksack bag = new Rucksack("Apple");
+        assertTrue(bag.containsItem('A'));
+        assertFalse(bag.containsItem('B'));
     }
 }
