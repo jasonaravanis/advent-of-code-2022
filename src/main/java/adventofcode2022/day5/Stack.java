@@ -18,11 +18,4 @@ public class Stack {
         return crates.stream().map(Crate::toString).collect(Collectors.joining("\n"));
 
     }
-
-//    public List<Crate> getCrates(int quantity) {
-//        List<Crate> cratesToMove;
-//        for (int i = 0; i < quantity; i++) {
-//            Crate topCrate = crates.removeLast();
-//        }
-//    }
 }

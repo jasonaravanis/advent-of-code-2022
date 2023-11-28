@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class Main5 {
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = FileLoader.getFileAsReader("adventofcode2022/day5/input.txt");
-        Solver solver = new Solver(reader);
+        String input = FileLoader.getFileAsString("adventofcode2022/day5/input.txt");
+        String partOneSolution = Solver.getPartOneSolution(input);
     }
 }
 
