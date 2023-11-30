@@ -42,4 +42,15 @@ public class ShipYardTest {
         assertEquals("L", sourceStackTopCrate);
         assertEquals("R", destinationStackTopCrate);
     }
+
+    @Test
+    void processesMultiCrateInstructions() {
+        ShipYard shipYard = new ShipYard(initialStateInput);
+        Instruction instruction = new Instruction("move 2 from 6 to 5");
+        shipYard.processMultiCrateInstruction(instruction);
+        String sourceStackTopCrate = shipYard.stacks[5].getTopCrate();
+        String destinationStackTopCrate = shipYard.stacks[4].getTopCrate();
+        assertEquals("Q", sourceStackTopCrate);
+        assertEquals("C", destinationStackTopCrate);
+    }
 }

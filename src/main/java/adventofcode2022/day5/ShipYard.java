@@ -31,4 +31,20 @@ public class ShipYard {
             }
         }
     }
+
+    public void processMultiCrateInstruction(Instruction instruction) {
+        Stack sourceStack = stacks[instruction.stackSource - 1];
+        Stack destinationStack = stacks[instruction.stackDestination - 1];
+        Stack temporaryStack = new Stack();
+        for (int i = 0; i < instruction.crateCount; i++) {
+            Crate crate = sourceStack.crates.pollLast();
+            if (crate != null) {
+                temporaryStack.crates.addLast(crate);
+            }
+        }
+        Crate currentCrate;
+        while ((currentCrate = temporaryStack.crates.pollLast()) != null) {
+            destinationStack.crates.addLast(currentCrate);
+        }
+    }
 }

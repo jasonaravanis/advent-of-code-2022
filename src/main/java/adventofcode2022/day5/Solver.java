@@ -17,4 +17,18 @@ public class Solver {
 
         return Arrays.stream(shipyard.stacks).map(Stack::getTopCrate).collect(Collectors.joining(""));
     }
+
+    public static String getPartTwoSolution(String input) {
+        String initialShipYardState = input.lines().limit(9).collect(Collectors.joining("\n"));
+        ShipYard shipyard = new ShipYard(initialShipYardState);
+
+        String[] craneInstructions = input.lines().skip(10).toArray(String[]::new);
+
+        for (String instructionStr : craneInstructions) {
+            Instruction instruction = new Instruction(instructionStr);
+            shipyard.processMultiCrateInstruction(instruction);
+        }
+
+        return Arrays.stream(shipyard.stacks).map(Stack::getTopCrate).collect(Collectors.joining(""));
+    }
 }
