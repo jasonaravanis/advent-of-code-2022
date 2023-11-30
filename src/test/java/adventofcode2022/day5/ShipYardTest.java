@@ -7,7 +7,8 @@ import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShipYardTest {
-    public final String initialStateInput = """
+
+    private final ShipYard shipYard = new ShipYard("""
             [V]     [B]                     [F]
             [N] [Q] [W]                 [R] [B]
             [F] [D] [S]     [B]         [L] [P]
@@ -17,11 +18,11 @@ public class ShipYardTest {
             [H] [R] [Q] [S] [V] [R] [V] [Z] [S]
             [J] [S] [N] [R] [M] [T] [G] [C] [D]
              1   2   3   4   5   6   7   8   9
-            """;
+            """);
 
     @Test
     void loadsInitialState() {
-        ShipYard shipYard = new ShipYard(initialStateInput);
+
         String firstStackTopCrate = shipYard.stacks[0].getTopCrate();
         String firstCrateLastCrate = Objects.requireNonNull(shipYard.stacks[0].crates.pollFirst()).toString();
         String lastStackTopCrate = shipYard.stacks[8].getTopCrate();
@@ -34,7 +35,7 @@ public class ShipYardTest {
 
     @Test
     void processesInstruction() {
-        ShipYard shipYard = new ShipYard(initialStateInput);
+
         Instruction instruction = new Instruction("move 1 from 8 to 4");
         shipYard.processInstruction(instruction);
         String sourceStackTopCrate = shipYard.stacks[7].getTopCrate();
@@ -45,7 +46,7 @@ public class ShipYardTest {
 
     @Test
     void processesMultiCrateInstructions() {
-        ShipYard shipYard = new ShipYard(initialStateInput);
+
         Instruction instruction = new Instruction("move 2 from 6 to 5");
         shipYard.processMultiCrateInstruction(instruction);
         String sourceStackTopCrate = shipYard.stacks[5].getTopCrate();
