@@ -9,6 +9,6 @@ public class Crate {
 
     @Override
     public String toString() {
-        return "[" + symbol + "]";
+        return String.valueOf(symbol);
     }
 }
