@@ -1,0 +1,56 @@
+1) take input and separate by each line
+
+each line can be one of the following types:
+
+* COMMAND (starts with $)
+* OUTPUT (starts with dir or a file size number)
+
+Each command be one of the following types:
+
+* CHANGE DIRECTORY
+    * to home /
+    * to subdirectory xyz
+    * to parent directory ..
+* LIST CURRENT DIRECTORY CONTENTS (ls)
+
+2) create a data structure made of nodes, where each node has a single parent and can have multiple child nodes
+
+use a Folder class
+a Folder can have a parent folder (or it's null in the case of the root directory)
+a Folder contains a list of items
+an item can be a Folder or a File
+
+a File has a size and a name
+
+3) create a piece of state that remembers:
+    * what directory path we are currently examining (currentDirectoryPath)
+    * if we are in list mode
+
+
+4) for an input line
+
+if the line is "$ cd /"
+    reset current directory path
+if the line is "$ cd xyz"
+    append "/xyz" to currentDirectoryPath
+if the line is "$ cd .."
+    remove the last part of the currentDirectoryPath
+if the line is "$ ls"
+    we enter list mode
+if the line is "dir xyz"
+    we create a new Folder with the name xyz and add it as a child of the folder at the currentDirectoryPath
+if the line is "1234 abc.anything"
+    we create a new File with the name abc and add it as a child of the folder at the currentDirectoryPath
+
+
+5) After we have loaded all the data into the folder tree, we can then use a recursive function to go through all branches and get dir size
+
+    * create an array to hold references to all Folders that have a size smaller than 100000 called SMALL_FOLDERS (potential to replace this with just an array of folder sizes)
+    * call a function that takes a reference to the root Folder as an argument
+    * within the function, get the size of the folder by first totalling any file sizes in the directory
+    * then, if there are child folders call the function in a recursive way to get the size of each child folder
+    * terminal case is we get the size of the folder based on the sum of the size of its children
+        * if the total size of folder is less than 100000, add a reference to that Folder to the SMALL_FOLDERS array (or maybe just the folder size)
+        * then return the size value so it can be used in parent folder calculation
+
+    * get the sum of the folder sizes from the array
