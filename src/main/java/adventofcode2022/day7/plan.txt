@@ -23,8 +23,7 @@ an item can be a Folder or a File
 a File has a size and a name
 
 3) create a piece of state that remembers:
-    * what directory path we are currently examining (currentDirectoryPath)
-    * if we are in list mode
+    * what directory path we are currently examining (currentDirectoryPath). Use Path class for this?
 
 
 4) for an input line
@@ -36,7 +35,7 @@ if the line is "$ cd xyz"
 if the line is "$ cd .."
     remove the last part of the currentDirectoryPath
 if the line is "$ ls"
-    we enter list mode
+    do nothing, go to next line
 if the line is "dir xyz"
     we create a new Folder with the name xyz and add it as a child of the folder at the currentDirectoryPath
 if the line is "1234 abc.anything"
