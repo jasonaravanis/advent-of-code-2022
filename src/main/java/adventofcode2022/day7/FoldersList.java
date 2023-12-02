@@ -1,6 +1,5 @@
 package adventofcode2022.day7;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +14,21 @@ public enum FoldersList {
     }
 
     public int getSumOfSmallFolderSizes() {
-        return folders.stream().mapToInt(Folder::getSize).filter(i -> i < 100000).sum();
+        return folders
+                .stream()
+                .mapToInt(Folder::getSize)
+                .filter(i -> i < 100000)
+                .sum();
+    }
+
+    public int getSizeOfSmallestFolderThatIsLargerThan(Integer minimumSize) {
+         return folders
+                 .stream()
+                 .mapToInt(Folder::getSize)
+                 .filter(i -> i > minimumSize)
+                 .sorted()
+                 .findFirst()
+                 .orElse(0);
     }
 
 }

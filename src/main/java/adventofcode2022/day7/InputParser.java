@@ -5,6 +5,9 @@ import java.io.IOException;
 
 public class InputParser {
 
+    private static final int TOTAL_DISK_SPACE = 7 * 1000 * 1000 * 10;
+    private static final int REQUIRED_DISK_SPACE = 3 * 1000 * 1000 * 10;
+
     /*
     * potential to replace rootDirectory with a singleton RootFolder that extends Folder with overridden getParent method
     * that returns a reference to itself
@@ -48,7 +51,7 @@ public class InputParser {
         }
     }
 
-    public static int getPartOneSolution(BufferedReader reader) throws IOException {
+    public static String getSolution(BufferedReader reader) throws IOException {
 
         String line;
         while ((line = reader.readLine()) != null) {
@@ -56,6 +59,12 @@ public class InputParser {
         }
         rootDirectory.getSize();
 
-        return FoldersList.LIST.getSumOfSmallFolderSizes();
+        int partOneSolution = FoldersList.LIST.getSumOfSmallFolderSizes();
+
+        int newSpaceNeeded = REQUIRED_DISK_SPACE - (TOTAL_DISK_SPACE - rootDirectory.getSize());
+
+        int partTwoSolution = FoldersList.LIST.getSizeOfSmallestFolderThatIsLargerThan(newSpaceNeeded);
+
+        return String.format("Day 7 part 1 solution: %d\nDay 7 part 2 solution: %d", partOneSolution, partTwoSolution);
     }
 }
