@@ -32,6 +32,10 @@ Use a double linked list i.e each folder knows its parent as well as all its chi
 3) create a piece of state that remembers:
     * what Folder path we are currently examining (currentDirectoryPath).
 
+    * create an array to references to all Folders
+        * we only need one array, but it needs to be available to all Folder objects
+        * so we can use a Singleton for this
+        * once all folders have been created and populated, can iterate over this list and filter to get just the small folders and the sizes
 
 4) for an input line
 
@@ -51,17 +55,13 @@ if the line is "1234 abc.anything"
 
 
 
-5b) After we have loaded all the data in the folder tree, we can solve by:
+5) After we have loaded all the data in the folder tree, we can solve by:
 
-    * create an array to hold sizes of all Folders that have a size smaller than 100000 called SMALL_FOLDER_SIZES
-        * we only need one array, but it needs to be available to all Folder objects
-        * so we can use a Singleton for this
     * call getSize on the root folder
     * within the implementation of getSize on Folder class
        * get the size of the folder by calling getSize on every element in FolderItem array in the Folder
            * this is recursive
            * terminal case is we get the size of the folder based on the sum of the size of its children, where its children are only Files
-               * if the total size of folder is less than 100000, add the total folder size to the SMALL_FOLDER_SIZES static array
-               * then return the size value so it can be used in parent folder calculation
+           * return the size value so it can be used in parent folder calculation
 
-    * get the sum of the folder sizes from the array
+    * get the sum of the folder sizes from the array created in step 3

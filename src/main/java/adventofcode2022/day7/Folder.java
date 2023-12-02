@@ -11,6 +11,7 @@ public class Folder implements FolderItem {
     public Folder(String name, Folder parent) {
         this.parent = parent;
         this.name = name;
+        FoldersList.LIST.addFolder(this);
     }
 
     public void addItem(FolderItem item) {
@@ -35,11 +36,7 @@ public class Folder implements FolderItem {
     }
 
     public int getSize() {
-        int result = items.stream().mapToInt(FolderItem::getSize).sum();
-        if (result <= 100000) {
-            SmallFoldersSingletonList.LIST.addSizeToList(result);
-        }
-        return result;
+        return items.stream().mapToInt(FolderItem::getSize).sum();
     }
 
 }

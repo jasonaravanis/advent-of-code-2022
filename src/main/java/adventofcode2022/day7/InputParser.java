@@ -56,6 +56,6 @@ public class InputParser {
         }
         rootDirectory.getSize();
 
-        return SmallFoldersSingletonList.LIST.getSumOfSmallFolderSizes();
+        return FoldersList.LIST.getSumOfSmallFolderSizes();
     }
 }
