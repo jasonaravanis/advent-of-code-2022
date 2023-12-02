@@ -1,4 +1,4 @@
-We can use a two dimensional array for this data
+We can use a two-dimensional array for this data
 
 to load the input we separate each line by \n
 for a line
@@ -24,6 +24,10 @@ we then loop over i and j to go through every digit
  the max value in the top portion is less than the number
  OR
  the max value in the bottom portion is less than the number
+ OR
+ it's index value for i is 0 or max (it's on the edge of the grid)
+ OR
+ it's index value for j is 0 or max (it's on the edge of the grid)
 
  *************************************************************
 
