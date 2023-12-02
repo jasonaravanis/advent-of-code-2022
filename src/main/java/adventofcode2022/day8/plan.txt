@@ -1,0 +1,44 @@
+We can use a two dimensional array for this data
+
+to load the input we separate each line by \n
+for a line
+    * we create an array
+    * we separate each digit
+    for each digit we insert it in the array at [i][j]
+
+we then loop over i and j to go through every digit
+
+*************************************************************
+
+ for a digit, we don't care how it's visible, only that it is visible.
+
+ wherever the number is, it's in a row and a column
+ for the row, we split it into two pieces for the left and right of the number
+ for the column, we split it into two pieces for the above and below of the number
+
+ for a number in the grid to be visible:
+ the max value in the left portion is less than the number
+ OR
+ the max value in the right portion is less than the number
+ OR
+ the max value in the top portion is less than the number
+ OR
+ the max value in the bottom portion is less than the number
+
+ *************************************************************
+
+ for i
+    for j
+
+    Array left = sub array from 0 to i
+    Array right = sub array from i + 1 to end
+    Array top = ...
+        loop through rows 0 to j
+        for each row get digit at i
+    Array bottom = ...
+        loop through rows j + 1 to end
+        for each row get digit at i
+
+    get max value from each array
+
+    apply conditional logic to get visibility status
