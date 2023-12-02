@@ -20,6 +20,7 @@ a File has a size and a name
 
 use a Folder class
 a Folder can have a parent folder (or it's null in the case of the root directory)
+Use a double linked list i.e each folder knows its parent as well as all its children.
 * there is a single list of FolderItem, which both File and Folder extend.
     * FolderItem is abstract.
     * FolderItem has a method called getSize(). so both File and Folder must implement getSize();
@@ -29,7 +30,7 @@ a Folder can have a parent folder (or it's null in the case of the root director
 
 
 3) create a piece of state that remembers:
-    * what directory path we are currently examining (currentDirectoryPath). Use Path class for this?
+    * what Folder path we are currently examining (currentDirectoryPath).
 
 
 4) for an input line
@@ -48,28 +49,19 @@ if the line is "1234 abc.anything"
     we create a new File with the name abc and add it as a child of the folder at the currentDirectoryPath
 
 
-5) After we have loaded all the data into the folder tree, we can then use a recursive function to go through all branches and get dir size
-
-    * create an array to hold references to all Folders that have a size smaller than 100000 called SMALL_FOLDERS (potential to replace this with just an array of folder sizes)
-    * call a function that takes a reference to the root Folder as an argument
-    * within the function, get the size of the folder by first totalling any file sizes in the directory
-    * then, if there are child folders call the function in a recursive way to get the size of each child folder
-    * terminal case is we get the size of the folder based on the sum of the size of its children
-        * if the total size of folder is less than 100000, add a reference to that Folder to the SMALL_FOLDERS array (or maybe just the folder size)
-        * then return the size value so it can be used in parent folder calculation
-
-    * get the sum of the folder sizes from the array
 
 
 5b) After we have loaded all the data in the folder tree, we can solve by:
 
     * create an array to hold sizes of all Folders that have a size smaller than 100000 called SMALL_FOLDER_SIZES
+        * we only need one array, but it needs to be available to all Folder objects
+        * so we can use a Singleton for this
     * call getSize on the root folder
     * within the implementation of getSize on Folder class
        * get the size of the folder by calling getSize on every element in FolderItem array in the Folder
            * this is recursive
            * terminal case is we get the size of the folder based on the sum of the size of its children, where its children are only Files
-               * if the total size of folder is less than 100000, add the total folder size to the SMALL_FOLDER_SIZES array
+               * if the total size of folder is less than 100000, add the total folder size to the SMALL_FOLDER_SIZES static array
                * then return the size value so it can be used in parent folder calculation
 
     * get the sum of the folder sizes from the array

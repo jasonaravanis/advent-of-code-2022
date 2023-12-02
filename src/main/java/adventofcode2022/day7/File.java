@@ -1,18 +1,28 @@
 package adventofcode2022.day7;
 
-public class File extends FolderItem {
+public class File implements FolderItem {
     public String name;
-    public String extension;
     public int size;
 
-    public File (String name, String extension, int size) {
+    public Folder parent;
+
+    public File (int size, String name, Folder parent) {
         this.name = name;
-        this.extension = extension;
         this.size = size;
+        this.parent = parent;
     }
 
-    @Override
+
+    public Folder getParent() {
+        return parent;
+    }
+
+
     public int getSize() {
         return size;
+    }
+
+    public String getName() {
+        return name;
     }
 }

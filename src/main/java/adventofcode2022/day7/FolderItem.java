@@ -1,5 +1,9 @@
 package adventofcode2022.day7;
 
-public abstract class FolderItem {
-    abstract int getSize();
+public interface FolderItem {
+    int getSize();
+
+    Folder getParent();
+
+    String getName();
 }
