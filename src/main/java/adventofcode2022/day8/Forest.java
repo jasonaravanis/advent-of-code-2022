@@ -19,10 +19,8 @@ public class Forest {
         */
 
         for (int i = 0; i < inputRows.length; i++) {
-            String inputRow = inputRows[i];
-            String[] chars = inputRow.split("");
+            String[] chars = inputRows[i].split("");
             Tree[] trees = Arrays.stream(chars).mapToInt(Integer::valueOf).mapToObj(Tree::new).toArray(Tree[]::new);
-
             System.arraycopy(trees, 0, forest[i], 0, colCount);
         }
 
