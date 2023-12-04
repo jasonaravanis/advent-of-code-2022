@@ -2,16 +2,20 @@ package adventofcode2022.day8;
 
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Forest {
 
+    public final int rowCount;
+    public final int colCount;
     Tree[][] forest;
 
     public Forest(String input) {
         String[] inputRows = input.lines().toArray(String[]::new);
-        int colCount = inputRows[0].split("").length;
+        this.rowCount = inputRows.length;
+        this.colCount = inputRows[0].split("").length;
 
-        forest = new Tree[inputRows.length][colCount];
+        forest = new Tree[rowCount][colCount];
 
         /*
         *  i = row number
@@ -24,5 +28,31 @@ public class Forest {
             System.arraycopy(trees, 0, forest[i], 0, colCount);
         }
 
+    }
+
+    public Tree getTreeIfVisible(int rowIndex, int colIndex) {
+        Tree testTree = forest[rowIndex][colIndex];
+
+        // Probably worth giving each tree knowledge of it's own location
+        // so we can pass trees around instead of rowIndex/colIndex all the time
+        return  testTree;
+    }
+
+    public Tree[] getTreesAbove(int rowIndex, int colIndex) {
+        Tree[] subArray = new Tree[rowIndex];
+        for (int i = 0; i < rowIndex; i++) {
+            subArray[i] = forest[i][colIndex];
+        }
+        return subArray;
+    }
+
+    public boolean isVisibleFromAbove(int rowIndex, int colIndex) {
+        Tree referenceTree = forest[rowIndex][colIndex];
+        Tree[] treesAbove = getTreesAbove(rowIndex, colIndex);
+        if (treesAbove.length == 0) {
+            return true;
+        }
+        Tree tallestTreeAbove = Arrays.stream(treesAbove).max(Comparator.comparingInt(t -> t.height)).orElse(null);
+        return referenceTree.height > tallestTreeAbove.height;
     }
 }
