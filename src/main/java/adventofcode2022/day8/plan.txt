@@ -46,3 +46,24 @@ we then loop over i and j to go through every digit
     get max value from each array
 
     apply conditional logic to get visibility status
+
+*************************************************************
+
+Classes
+
+Main
+    * loads input
+    * prints solution
+Tree
+    * just has a height
+Forest
+    * takes input and loads it into a grid data structure
+    * utility to return a tree
+    * utility to return sub-row before a tree
+    * utility to return sub-row after a tree
+    * utility to return sub-column before a tree
+    * utility to return sub-column after a tree
+    * consists of a two-dimensional list of trees
+    * utility methods used by methods in Solver
+Solver
+    * Generates solutions
