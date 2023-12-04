@@ -25,8 +25,4 @@ public class Forest {
         }
 
     }
-
-    public int getTreeHeight(int rowIndex, int colIndex) {
-        return forest[rowIndex][colIndex].height;
-    }
 }

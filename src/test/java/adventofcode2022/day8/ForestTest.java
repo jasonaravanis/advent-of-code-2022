@@ -19,12 +19,4 @@ public class ForestTest {
         assertEquals(7, testForest.forest[2][0].height);
         assertEquals(9, testForest.forest[2][2].height);
     }
-
-    @Test
-    void getsTreeHeight() {
-        assertEquals(1, testForest.getTreeHeight(0, 0));
-        assertEquals(3, testForest.getTreeHeight(0, 2));
-        assertEquals(7, testForest.getTreeHeight(2, 0));
-        assertEquals(9, testForest.getTreeHeight(2, 2));
-    }
 }
