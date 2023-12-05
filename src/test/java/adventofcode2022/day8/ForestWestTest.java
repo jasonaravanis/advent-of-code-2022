@@ -2,7 +2,7 @@ package adventofcode2022.day8;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ForestWestTest {
 
@@ -24,4 +24,35 @@ public class ForestWestTest {
         Tree[] treesWest = testForest.getTreesWest(testForest.forest[1][0]);
         assertEquals(0, treesWest.length);
     }
+
+    @Test
+    void isVisibleFromWest_returnsTrueIfVisibleFromWest() {
+        assertTrue(testForest.isVisibleFromWest(testForest.forest[2][2]));
+    }
+
+    @Test
+    void isVisibleFromWest_returnsFalseIfNotVisibleFromWest() {
+        String testInput = """
+                201
+                000
+                000""";
+        Forest testForest = new Forest(testInput);
+        assertFalse(testForest.isVisibleFromWest(testForest.forest[0][2]));
+    }
+
+    @Test
+    void isVisibleFromWest_returnsFalseIfEqualHeight() {
+        String testInput = """
+                101
+                000
+                000""";
+        Forest testForest = new Forest(testInput);
+        assertFalse(testForest.isVisibleFromWest(testForest.forest[0][2]));
+    }
+
+    @Test
+    void isVisibleFromWest_returnsTrueIfOnLeftEdgeOfForest() {
+        assertTrue(testForest.isVisibleFromWest(testForest.forest[1][0]));
+    }
+
 }

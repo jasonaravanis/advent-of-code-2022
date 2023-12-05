@@ -40,6 +40,9 @@ public class Forest {
         if (isVisibleFromSouth(tree)) {
             return true;
         }
+        if (isVisibleFromWest(tree)) {
+            return true;
+        }
         return  false;
     }
 
@@ -81,5 +84,14 @@ public class Forest {
         Tree[] subArray = new Tree[tree.colIndex];
         System.arraycopy(forest[tree.rowIndex], 0, subArray, 0, tree.colIndex);
         return subArray;
+    }
+
+    public boolean isVisibleFromWest(Tree tree) {
+        Tree[] treesWest = getTreesWest(tree);
+        if (treesWest.length == 0) {
+            return true;
+        }
+        Tree tallestTreeAbove = Arrays.stream(treesWest).max(Comparator.comparingInt(t -> t.height)).orElse(null);
+        return tree.height > tallestTreeAbove.height;
     }
 }
