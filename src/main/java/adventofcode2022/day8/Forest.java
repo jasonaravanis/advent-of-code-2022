@@ -35,7 +35,10 @@ public class Forest {
 
     public boolean isTreeVisible(Tree tree) {
         if (isVisibleFromAbove(tree)) {
-            return  true;
+            return true;
+        }
+        if (isVisibleFromBelow(tree)) {
+            return true;
         }
         return  false;
     }
@@ -63,5 +66,14 @@ public class Forest {
             subArray[i] = forest[i + (tree.rowIndex + 1)][tree.colIndex];
         }
         return subArray;
+    }
+
+    public boolean isVisibleFromBelow(Tree tree) {
+        Tree[] treesBelow = getTreesBelow(tree);
+        if (treesBelow.length == 0) {
+            return true;
+        }
+        Tree tallestTreeBelow = Arrays.stream(treesBelow).max(Comparator.comparingInt(t -> t.height)).orElse(null);
+        return tree.height > tallestTreeBelow.height;
     }
 }

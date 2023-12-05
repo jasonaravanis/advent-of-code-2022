@@ -35,13 +35,13 @@ public class ForestTest {
     }
 
     @Test
-    void returnsTrueIfVisibleFromAbove() {
+    void isVisibleFromAbove_returnsTrueIfVisibleFromAbove() {
         Tree testTree = testForest.forest[2][2];
         assertTrue(testForest.isVisibleFromAbove(testTree));
     }
 
     @Test
-    void returnsFalseIfNotVisibleFromAbove() {
+    void isVisibleFromAbove_returnsFalseIfNotVisibleFromAbove() {
         String testInput = """
                 001
                 000
@@ -52,7 +52,7 @@ public class ForestTest {
     }
 
     @Test
-    void returnsFalseIfEqualHeight() {
+    void isVisibleFromAbove_returnsFalseIfEqualHeight() {
         String testInput = """
                 001
                 000
@@ -60,6 +60,11 @@ public class ForestTest {
         Forest testForest = new Forest(testInput);
         Tree testTree = testForest.forest[2][2];
         assertFalse(testForest.isVisibleFromAbove(testTree));
+    }
+
+    @Test
+    void isVisibleFromAbove_returnsTrueIfOnTopEdgeOfForest() {
+        assertTrue(testForest.isVisibleFromAbove(testForest.forest[0][0]));
     }
 
     @Test
@@ -72,5 +77,43 @@ public class ForestTest {
     @Test
     void getsTreesBelowTree_returnsEmptyArrayIfOnBottomEdgeOfForest() {
         assertEquals(0, testForest.getTreesBelow(testForest.forest[2][1]).length);
+    }
+
+    @Test
+    void isVisibleFromBelow_returnsTrueIfVisibleFromBelow() {
+        String testInput = """
+                001
+                000
+                000""";
+        Forest testForest = new Forest(testInput);
+        Tree testTree = testForest.forest[0][2];
+        assertTrue(testForest.isVisibleFromBelow(testTree));
+    }
+
+    @Test
+    void isVisibleFromBelow_returnsFalseIfNotVisibleFromBelow() {
+        String testInput = """
+                001
+                000
+                002""";
+        Forest testForest = new Forest(testInput);
+        Tree testTree = testForest.forest[0][2];
+        assertFalse(testForest.isVisibleFromBelow(testTree));
+    }
+
+    @Test
+    void isVisibleFromBelow_returnsFalseIfEqualHeight() {
+        String testInput = """
+                001
+                000
+                001""";
+        Forest testForest = new Forest(testInput);
+        Tree testTree = testForest.forest[0][2];
+        assertFalse(testForest.isVisibleFromBelow(testTree));
+    }
+
+    @Test
+    void isVisibleFromBelow_returnsTrueIfOnBottomEdgeOfForest() {
+        assertTrue(testForest.isVisibleFromAbove(testForest.forest[2][2]));
     }
 }
