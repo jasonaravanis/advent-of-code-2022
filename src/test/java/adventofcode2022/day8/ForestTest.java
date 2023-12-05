@@ -20,4 +20,13 @@ public class ForestTest {
         assertEquals(9, testForest.forest[2][2].height);
     }
 
+    @Test
+    void calculatesTreeVisibility() {
+        String testInput = """
+                111
+                101
+                111""";
+        Forest testForest = new Forest(testInput);
+        assertFalse(testForest.isTreeVisible(testForest.forest[1][1]));
+    }
 }

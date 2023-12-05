@@ -11,10 +11,10 @@ public class Solver {
 
         for (int i = 0; i < forest.rowCount; i++) {
             for (int j = 0; j < forest.colCount; j++) {
-//                Tree treeAtLocation = forest.getTreeIfVisible(i, j);
-//                if (treeAtLocation != null) {
-//                    visibleTrees.add(treeAtLocation);
-//                }
+                Tree testTree = forest.forest[i][j];
+                if (forest.isTreeVisible(testTree)) {
+                    visibleTrees.add(testTree);
+                }
             }
         }
 
