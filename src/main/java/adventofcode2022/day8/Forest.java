@@ -58,11 +58,9 @@ public class Forest {
     }
 
     public Tree[] getTreesBelow(Tree tree) {
-        int subArrayStartIndex = tree.rowIndex + 1;
-        int subArrayEndIndex = rowCount;
-        Tree[] subArray = new Tree[subArrayEndIndex - subArrayStartIndex];
-        for (int i = 0; i + subArrayStartIndex < subArrayEndIndex; i++) {
-            subArray[i] = forest[i + subArrayStartIndex][tree.colIndex];
+        Tree[] subArray = new Tree[rowCount - (tree.rowIndex + 1)];
+        for (int i = 0; i + (tree.rowIndex + 1) < rowCount; i++) {
+            subArray[i] = forest[i + (tree.rowIndex + 1)][tree.colIndex];
         }
         return subArray;
     }
