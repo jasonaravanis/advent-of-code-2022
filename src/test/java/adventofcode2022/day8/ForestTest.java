@@ -61,4 +61,16 @@ public class ForestTest {
         Tree testTree = testForest.forest[2][2];
         assertFalse(testForest.isVisibleFromAbove(testTree));
     }
+
+    @Test
+    void getsTreesBelowTree() {
+        Tree[] treesBelow = testForest.getTreesBelow(testForest.forest[0][1]);
+        assertEquals(5, treesBelow[0].height);
+        assertEquals(8, treesBelow[1].height);
+    }
+
+    @Test
+    void getsTreesBelowTree_returnsEmptyArrayIfOnBottomEdgeOfForest() {
+        assertEquals(0, testForest.getTreesBelow(testForest.forest[2][1]).length);
+    }
 }

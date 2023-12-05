@@ -34,8 +34,10 @@ public class Forest {
     }
 
     public boolean isTreeVisible(Tree tree) {
-
-        return  true;
+        if (isVisibleFromAbove(tree)) {
+            return  true;
+        }
+        return  false;
     }
 
     public Tree[] getTreesAbove(Tree tree) {
@@ -53,5 +55,15 @@ public class Forest {
         }
         Tree tallestTreeAbove = Arrays.stream(treesAbove).max(Comparator.comparingInt(t -> t.height)).orElse(null);
         return tree.height > tallestTreeAbove.height;
+    }
+
+    public Tree[] getTreesBelow(Tree tree) {
+        int subArrayStartIndex = tree.rowIndex + 1;
+        int subArrayEndIndex = rowCount;
+        Tree[] subArray = new Tree[subArrayEndIndex - subArrayStartIndex];
+        for (int i = 0; i + subArrayStartIndex < subArrayEndIndex; i++) {
+            subArray[i] = forest[i + subArrayStartIndex][tree.colIndex];
+        }
+        return subArray;
     }
 }
