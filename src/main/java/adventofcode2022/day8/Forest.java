@@ -77,7 +77,9 @@ public class Forest {
         return tree.height > tallestTreeBelow.height;
     }
 
-//    public Tree[] getTreesLeft(Tree tree) {
-//
-//    }
+    public Tree[] getTreesWest(Tree tree) {
+        Tree[] subArray = new Tree[tree.colIndex];
+        System.arraycopy(forest[tree.rowIndex], 0, subArray, 0, tree.colIndex);
+        return subArray;
+    }
 }
