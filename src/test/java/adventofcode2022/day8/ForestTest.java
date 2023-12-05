@@ -22,19 +22,22 @@ public class ForestTest {
 
     @Test
     void getsTreesAboveTree() {
-        Tree[] treesAbove = testForest.getTreesAbove(2, 1);
+        Tree testTree = testForest.forest[2][1];
+        Tree[] treesAbove = testForest.getTreesAbove(testTree);
         assertEquals(2, treesAbove[0].height);
         assertEquals(5, treesAbove[1].height);
     }
     @Test
     void getsTreesAboveTree_returnsEmptyArrayIfOnTopEdgeOfForest() {
-        Tree[] treesAbove = testForest.getTreesAbove(0, 1);
+        Tree testTree = testForest.forest[0][1];
+        Tree[] treesAbove = testForest.getTreesAbove(testTree);
         assertEquals(0, treesAbove.length);
     }
 
     @Test
     void returnsTrueIfVisibleFromAbove() {
-        assertTrue(testForest.isVisibleFromAbove(2,2));
+        Tree testTree = testForest.forest[2][2];
+        assertTrue(testForest.isVisibleFromAbove(testTree));
     }
 
     @Test
@@ -44,7 +47,8 @@ public class ForestTest {
                 000
                 000""";
         Forest testForest = new Forest(testInput);
-        assertFalse(testForest.isVisibleFromAbove(2,2));
+        Tree testTree = testForest.forest[2][2];
+        assertFalse(testForest.isVisibleFromAbove(testTree));
     }
 
     @Test
@@ -54,6 +58,7 @@ public class ForestTest {
                 000
                 001""";
         Forest testForest = new Forest(testInput);
-        assertFalse(testForest.isVisibleFromAbove(2,2));
+        Tree testTree = testForest.forest[2][2];
+        assertFalse(testForest.isVisibleFromAbove(testTree));
     }
 }

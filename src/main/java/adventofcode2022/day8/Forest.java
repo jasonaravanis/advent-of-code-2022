@@ -24,35 +24,34 @@ public class Forest {
 
         for (int i = 0; i < inputRows.length; i++) {
             String[] chars = inputRows[i].split("");
-            Tree[] trees = Arrays.stream(chars).mapToInt(Integer::valueOf).mapToObj(Tree::new).toArray(Tree[]::new);
+            Tree[] trees = new Tree[chars.length];
+            for (int j = 0; j < trees.length; j++) {
+                trees[j] = new Tree(Integer.parseInt(chars[j]), i ,j);
+            }
             System.arraycopy(trees, 0, forest[i], 0, colCount);
         }
 
     }
 
-    public Tree getTreeIfVisible(int rowIndex, int colIndex) {
-        Tree testTree = forest[rowIndex][colIndex];
+    public boolean isTreeVisible(Tree tree) {
 
-        // Probably worth giving each tree knowledge of it's own location
-        // so we can pass trees around instead of rowIndex/colIndex all the time
-        return  testTree;
+        return  true;
     }
 
-    public Tree[] getTreesAbove(int rowIndex, int colIndex) {
-        Tree[] subArray = new Tree[rowIndex];
-        for (int i = 0; i < rowIndex; i++) {
-            subArray[i] = forest[i][colIndex];
+    public Tree[] getTreesAbove(Tree tree) {
+        Tree[] subArray = new Tree[tree.rowIndex];
+        for (int i = 0; i < tree.rowIndex; i++) {
+            subArray[i] = forest[i][tree.colIndex];
         }
         return subArray;
     }
 
-    public boolean isVisibleFromAbove(int rowIndex, int colIndex) {
-        Tree referenceTree = forest[rowIndex][colIndex];
-        Tree[] treesAbove = getTreesAbove(rowIndex, colIndex);
+    public boolean isVisibleFromAbove(Tree tree) {
+        Tree[] treesAbove = getTreesAbove(tree);
         if (treesAbove.length == 0) {
             return true;
         }
         Tree tallestTreeAbove = Arrays.stream(treesAbove).max(Comparator.comparingInt(t -> t.height)).orElse(null);
-        return referenceTree.height > tallestTreeAbove.height;
+        return tree.height > tallestTreeAbove.height;
     }
 }
