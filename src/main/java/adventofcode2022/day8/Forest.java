@@ -34,16 +34,16 @@ public class Forest {
     }
 
     public boolean isTreeVisible(Tree tree) {
-        if (isVisibleFromAbove(tree)) {
+        if (isVisibleFromNorth(tree)) {
             return true;
         }
-        if (isVisibleFromBelow(tree)) {
+        if (isVisibleFromSouth(tree)) {
             return true;
         }
         return  false;
     }
 
-    public Tree[] getTreesAbove(Tree tree) {
+    public Tree[] getTreesNorth(Tree tree) {
         Tree[] subArray = new Tree[tree.rowIndex];
         for (int i = 0; i < tree.rowIndex; i++) {
             subArray[i] = forest[i][tree.colIndex];
@@ -51,8 +51,8 @@ public class Forest {
         return subArray;
     }
 
-    public boolean isVisibleFromAbove(Tree tree) {
-        Tree[] treesAbove = getTreesAbove(tree);
+    public boolean isVisibleFromNorth(Tree tree) {
+        Tree[] treesAbove = getTreesNorth(tree);
         if (treesAbove.length == 0) {
             return true;
         }
@@ -60,7 +60,7 @@ public class Forest {
         return tree.height > tallestTreeAbove.height;
     }
 
-    public Tree[] getTreesBelow(Tree tree) {
+    public Tree[] getTreesSouth(Tree tree) {
         Tree[] subArray = new Tree[rowCount - (tree.rowIndex + 1)];
         for (int i = 0; i + (tree.rowIndex + 1) < rowCount; i++) {
             subArray[i] = forest[i + (tree.rowIndex + 1)][tree.colIndex];
@@ -68,12 +68,16 @@ public class Forest {
         return subArray;
     }
 
-    public boolean isVisibleFromBelow(Tree tree) {
-        Tree[] treesBelow = getTreesBelow(tree);
+    public boolean isVisibleFromSouth(Tree tree) {
+        Tree[] treesBelow = getTreesSouth(tree);
         if (treesBelow.length == 0) {
             return true;
         }
         Tree tallestTreeBelow = Arrays.stream(treesBelow).max(Comparator.comparingInt(t -> t.height)).orElse(null);
         return tree.height > tallestTreeBelow.height;
     }
+
+//    public Tree[] getTreesLeft(Tree tree) {
+//
+//    }
 }
