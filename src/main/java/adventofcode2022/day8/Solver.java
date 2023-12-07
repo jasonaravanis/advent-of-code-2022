@@ -20,4 +20,18 @@ public class Solver {
 
         return visibleTrees.size();
     }
+
+    public static int getPartTwoSolution(String input) {
+        Forest forest = new Forest(input);
+        int highestScenicScore = 0;
+        for (int i = 0; i < forest.rowCount; i++) {
+            for (int j = 0; j < forest.colCount; j++) {
+                int score = forest.getScenicScore(forest.forest[i][j]);
+                if (score > highestScenicScore) {
+                    highestScenicScore = score;
+                }
+            }
+        }
+        return highestScenicScore;
+    }
 }

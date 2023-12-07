@@ -14,9 +14,17 @@ public class ForestWestTest {
 
     @Test
     void getsTreesToTheLeft() {
-        Tree[] treesWest = testForest.getTreesWest(testForest.forest[1][2]);
-        assertEquals(4, treesWest[0].height);
-        assertEquals(5, treesWest[1].height);
+        String testInput = """
+                40373
+                25512
+                65332
+                33549
+                35390""";
+        Forest testForest = new Forest(testInput);
+        Tree[] treesWest = testForest.getTreesWest(testForest.forest[0][3]);
+        assertEquals(3, treesWest.length);
+        assertEquals(3, treesWest[0].height);
+        assertEquals(4, treesWest[treesWest.length - 1].height);
     }
 
     @Test

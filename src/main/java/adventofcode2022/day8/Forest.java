@@ -33,37 +33,20 @@ public class Forest {
 
     }
 
-    public boolean isTreeVisible(Tree tree) {
-        if (isVisibleFromNorth(tree)) {
+    private boolean isTreeTallerThanTrees(Tree tree, Tree[] trees) {
+        if (trees.length == 0) {
             return true;
         }
-        if (isVisibleFromSouth(tree)) {
-            return true;
-        }
-        if (isVisibleFromWest(tree)) {
-            return true;
-        }
-        if (isVisibleFromEast(tree)) {
-            return true;
-        }
-        return  false;
+        Tree tallestTreeAbove = Arrays.stream(trees).max(Comparator.comparingInt(t -> t.height)).orElse(null);
+        return tree.height > tallestTreeAbove.height;
     }
 
     public Tree[] getTreesNorth(Tree tree) {
         Tree[] subArray = new Tree[tree.rowIndex];
         for (int i = 0; i < tree.rowIndex; i++) {
-            subArray[i] = forest[i][tree.colIndex];
+            subArray[i] = forest[tree.rowIndex - 1 - i][tree.colIndex];
         }
         return subArray;
-    }
-
-    public boolean isVisibleFromNorth(Tree tree) {
-        Tree[] treesAbove = getTreesNorth(tree);
-        if (treesAbove.length == 0) {
-            return true;
-        }
-        Tree tallestTreeAbove = Arrays.stream(treesAbove).max(Comparator.comparingInt(t -> t.height)).orElse(null);
-        return tree.height > tallestTreeAbove.height;
     }
 
     public Tree[] getTreesSouth(Tree tree) {
@@ -74,28 +57,13 @@ public class Forest {
         return subArray;
     }
 
-    public boolean isVisibleFromSouth(Tree tree) {
-        Tree[] treesBelow = getTreesSouth(tree);
-        if (treesBelow.length == 0) {
-            return true;
-        }
-        Tree tallestTreeBelow = Arrays.stream(treesBelow).max(Comparator.comparingInt(t -> t.height)).orElse(null);
-        return tree.height > tallestTreeBelow.height;
-    }
-
     public Tree[] getTreesWest(Tree tree) {
         Tree[] subArray = new Tree[tree.colIndex];
-        System.arraycopy(forest[tree.rowIndex], 0, subArray, 0, tree.colIndex);
-        return subArray;
-    }
-
-    public boolean isVisibleFromWest(Tree tree) {
-        Tree[] treesWest = getTreesWest(tree);
-        if (treesWest.length == 0) {
-            return true;
+        for (int j = 0; j < (tree.colIndex); j++ ) {
+            subArray[j] = forest[tree.rowIndex][tree.colIndex - 1 - j];
         }
-        Tree tallestTreeAbove = Arrays.stream(treesWest).max(Comparator.comparingInt(t -> t.height)).orElse(null);
-        return tree.height > tallestTreeAbove.height;
+
+        return subArray;
     }
 
     public Tree[] getTreesEast(Tree tree) {
@@ -104,12 +72,55 @@ public class Forest {
         return subArray;
     }
 
-    public boolean isVisibleFromEast(Tree tree) {
-        Tree[] treesEast = getTreesEast(tree);
-        if (treesEast.length == 0) {
+    public boolean isTreeVisible(Tree tree) {
+        if (isVisibleFromNorth(tree)) {
             return true;
         }
-        Tree tallestTreeAbove = Arrays.stream(treesEast).max(Comparator.comparingInt(t -> t.height)).orElse(null);
-        return tree.height > tallestTreeAbove.height;
+        if (isVisibleFromSouth(tree)) {
+            return true;
+        }
+        if (isVisibleFromWest(tree)) {
+            return true;
+        }
+        return isVisibleFromEast(tree);
+    }
+
+
+    public boolean isVisibleFromNorth(Tree tree) {
+        return isTreeTallerThanTrees(tree, getTreesNorth(tree));
+    }
+
+    public boolean isVisibleFromSouth(Tree tree) {
+        return isTreeTallerThanTrees(tree, getTreesSouth(tree));
+    }
+
+    public boolean isVisibleFromWest(Tree tree) {
+        return isTreeTallerThanTrees(tree, getTreesWest(tree));
+    }
+
+    public boolean isVisibleFromEast(Tree tree) {
+        return isTreeTallerThanTrees(tree, getTreesEast(tree));
+    }
+
+    public int getScoreFromDirection(Tree tree, Tree[] trees) {
+        int score = 0;
+        for (Tree value : trees) {
+            if (tree.height > value.height) {
+                score++;
+            } else {
+                score++;
+                break;
+            }
+        }
+        return  score;
+    }
+
+    public int getScenicScore(Tree tree) {
+        int scoreNorth = getScoreFromDirection(tree, getTreesNorth(tree));
+        int scoreEast = getScoreFromDirection(tree, getTreesEast(tree));
+        int scoreSouth = getScoreFromDirection(tree, getTreesSouth(tree));
+        int scoreWest= getScoreFromDirection(tree, getTreesWest(tree));
+
+        return scoreNorth * scoreEast * scoreSouth * scoreWest;
     }
 }

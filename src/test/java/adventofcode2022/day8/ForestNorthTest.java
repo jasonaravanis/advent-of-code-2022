@@ -15,8 +15,8 @@ public class ForestNorthTest {
     @Test
     void getsTreesAboveTree() {
         Tree[] treesAbove = testForest.getTreesNorth(testForest.forest[2][1]);
-        assertEquals(2, treesAbove[0].height);
-        assertEquals(5, treesAbove[1].height);
+        assertEquals(5, treesAbove[0].height);
+        assertEquals(2, treesAbove[1].height);
     }
     @Test
     void getsTreesAboveTree_returnsEmptyArrayIfOnTopEdgeOfForest() {
@@ -54,5 +54,49 @@ public class ForestNorthTest {
         assertTrue(testForest.isVisibleFromNorth(testForest.forest[0][0]));
     }
 
-
+    @Test
+    void getsScoreNorth() {
+        String testInput = """
+                30373
+                25512
+                65332
+                33549
+                35390""";
+        Forest testForest = new Forest(testInput);
+        Tree testTree = testForest.forest[3][2];
+        Tree[] treesAbove = testForest.getTreesNorth(testTree);
+        assertEquals(2, testForest.getScoreFromDirection(testTree, treesAbove));
+    }
+//
+//    @Test
+//    void getsBlockedScoreNorth() {
+//        String testInput = """
+//                020
+//                010
+//                000""";
+//        Forest testForest = new Forest(testInput);
+//        assertEquals(0, testForest.getScoreNorth(testForest.forest[1][1]));
+//    }
+//
+//    @Test
+//    void getsEqualScoreNorth() {
+//        String testInput = """
+//                010
+//                010
+//                000""";
+//        Forest testForest = new Forest(testInput);
+//        assertEquals(0, testForest.getScoreNorth(testForest.forest[1][1]));
+//    }
+//
+//    @Test
+//    void includesEqualHeightTreeInScore() {
+//        String testInput = """
+//                30373
+//                25512
+//                65332
+//                33549
+//                35390""";
+//        Forest testForest = new Forest(testInput);
+//        assertEquals(2, testForest.getScoreNorth(testForest.forest[3][2]));
+//    }
 }
