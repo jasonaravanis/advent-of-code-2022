@@ -1,0 +1,29 @@
+we don't know the size of the grid
+
+assume we start at  0, 0 and use normal x y axis
+
+Rope object
+has Head
+has Tail
+
+Head has coordinates
+Tail has coordinates
+
+we take in input and convert to list of instructions
+for each instruction...
+we process instruction
+we record coordinates of head
+we calculate new coordinates of tail
+we move tail
+we store coordinates of tail
+
+ if newHead not adjacent to Tail, tail takes prevHead position
+
+for each move we need to know
+    * start position
+    * direction (UP, DOWN, LEFT, RIGHT, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT)
+
+We can use the concept of a Position object, with methods to return new Positions based on direction
+
+
+Position object also has an isAdjacent method that evaluates if another position is next to or on top of current position
